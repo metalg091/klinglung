@@ -61,4 +61,4 @@ if($ans){
         <td><?php echo $_GET["en"];?></td>
     </tr>
 </table>
-<a href="index.php"><button>Kövi</button></a>
+<a href="write.php"><button>Kövi</button></a>
