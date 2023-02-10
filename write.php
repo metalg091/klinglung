@@ -80,10 +80,10 @@
     <div class="card-body">
         <form action="check.php" methode="get">
             <input id="id" type="text" name="id" value="<?php echo $c;?>" style="display: none;">
-            <div class="container"><div class="row">
-            <div class="col"><input type="text" autocomplete="off" id="en" name="en" class="form-control"></div>
-            <div class="col-1"><input type="submit" class="form-control btn btn-outline-primary" value="check"></div>
-        </div></div>
+            <div class="container my-3"><div class="row">
+                <div class="col"><input type="text" autocomplete="off" id="en" name="en" class="form-control"></div>
+                <div class="col-1"><input type="submit" class="form-control btn btn-outline-primary" value="check"></div>
+            </div></div>
         </form>
     </div>
 </div>
