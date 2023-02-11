@@ -31,7 +31,7 @@
                 </li-->
             </ul>
             <div class="d-flex">
-                <button type="button" class="btn btn-info" href="#">Create New</button>
+                <button type="button" class="btn btn-info" onclick="location.href='newlist.php'">Create New</button>
             </div>
         </div>
     </div>
