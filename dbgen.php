@@ -21,6 +21,16 @@
     } else {
         echo "<br>Error creating ite: " . mysqli_error($conn);
     }
+    $sql = "CREATE TABLE IF NOT EXISTS info (
+        `id` INT NOT NULL, 
+        `name` TINYTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, 
+        `desc` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, 
+        PRIMARY KEY (`id`))";
+    if (mysqli_query($conn, $sql)) {
+        echo "info table created successfully<br>";
+    } else {
+        echo "<br>Error creating info: " . mysqli_error($conn);
+    }
     $sql = "SELECT id FROM `ite`";
     $result = mysqli_query($conn, $sql);
     $row   = mysqli_fetch_row($result); //row[0] (single variable)
@@ -30,10 +40,18 @@
         `nat` TINYTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, 
         PRIMARY KEY (`id`)
         )";
+        if (mysqli_query($conn, $sql)) {
+            echo "Table " . $row[0] . " created successfully<br>";
+        } else {
+            echo "<br>Error creating table: " . mysqli_error($conn);
+        }
+    $title = mysqli_real_escape_string($conn, $_POST["title"]);
+    $desc = mysqli_real_escape_string($conn, $_POST["desc"]);
+    $sql = "INSERT INTO `info` (`id`, `name`, `desc`) VALUES ('" . $row[0] . "', '" . $title ."', '" . $desc . "')";
     if (mysqli_query($conn, $sql)) {
-        echo "Table " . $row[0] . " created successfully<br>";
+        echo "Inserted data successfully<br>";
     } else {
-        echo "<br>Error creating table: " . mysqli_error($conn);
+        echo "<br>Error: ". $sql . "<br>" . mysqli_error($conn);
     }
     $id = 0;
     for($i = 0; $i < count($inp)-1; $i+=2){

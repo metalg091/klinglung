@@ -34,6 +34,10 @@
     </div>
 </nav>
 <form action="dbgen.php" method="post">
+    <div class="m-5 w-25">
+        <input name="title" class="form-control mb-3" type="text" placeholder="Name of wordlist" aria-label="default input example">
+        <textarea name="desc" class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="Description of wordlist"></textarea>
+    </div>
     <div class="mx-5">
         <label for="formText" class="form-label">Insert word list</label>
         <textarea name="words" class="form-control" id="exampleFormControlTextarea1" rows="20"></textarea>
