@@ -5,10 +5,9 @@
         $launch = explode($delimiters[0], $ready);
         return  $launch;
     }
-
     $dbaddress = "localhost:3307";
-    $username = "test";
-    $passwd = '1234';
+    $username = "root";
+    $passwd = '';
     $db = 'wordlist';
     $conn = mysqli_connect($dbaddress, $username, $passwd, $db);
     $inp = array_values(array_filter(multiexplode(array(PHP_EOL,";",":","="), $_POST["words"])));
