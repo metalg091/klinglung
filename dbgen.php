@@ -15,6 +15,12 @@
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
+    $sql = "CREATE TABLE IF NOT EXISTS ite (`id` INT NOT NULL DEFAULT '0' ) AS SELECT 0 AS id";
+    if (mysqli_query($conn, $sql)) {
+        echo "Ite table created successfully<br>";
+    } else {
+        echo "<br>Error creating ite: " . mysqli_error($conn);
+    }
     $sql = "SELECT id FROM `ite`";
     $result = mysqli_query($conn, $sql);
     $row   = mysqli_fetch_row($result); //row[0] (single variable)
