@@ -40,38 +40,59 @@
 <div class="container">
     <!--Row with three equal columns-->
     <div class="row">
-        <div class="col">
-            <div class="card" style="width: 20rem;">
-                <!--img src="..." class="card-img-top" alt="..."-->
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card" style="width: 20rem;">
-                <!--img src="..." class="card-img-top" alt="..."-->
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card" style="width: 20rem;">
-                <!--img src="..." class="card-img-top" alt="..."-->
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
+<script>
+    <?php
+        $dbaddress = "localhost:3307";
+        $username = "root";
+        $passwd = '';
+        $db = 'wordlist';
+        $conn = mysqli_connect($dbaddress, $username, $passwd, $db);
+        $sql = "SELECT * FROM info";
+        $result = mysqli_query($conn, $sql);
+        $rows = [];
+        while($row = mysqli_fetch_array($result)){
+            $rows = array($row);
+        }
+        /*if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while($row = mysqli_fetch_assoc($result)) {
+                ;
+            }
+        } else {
+            echo "0 results";
+        }*/
+        mysqli_close($conn);
+    ?>
+    var id = <?php echo json_encode($rows[0]);?>;
+    var title = <?php echo json_encode($rows[1]);?>;
+    var desc = <?php echo json_encode($rows[2]);?>;
+    for(var i = 0; i < id.length; i++){
+        var wrap = document.createElement("div");
+        wrap.className = "col";
+        var card = document.createElement("div");
+        card.className = "card";
+        card.style = "width: 20rem;";
+        wrap.appendChild(card);
+        var bd = document.createElement("div");
+        bd.className = "card-body";
+        card.appendChild(bd);
+        var ctitle = document.createElement("h5");
+        ctitle.className = "card-title";
+        ctitle.innerText = title[i];
+        bd.appendChild(ctitle);
+        var ctext = document.createElement("p");
+        ctext.className = "card-text";
+        ctext.innerText = desc[i];
+        bd.appendChild(ctext);
+        var button = document.createElement("a");
+        button.className = "btn btn-primary";
+        button.innerText = "Practice";
+        bd.appendChild(button);
+        document.getElementById("ah").appendChild(wrap);
+    }
+</script>
 <!-- Bootstrap JS Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
