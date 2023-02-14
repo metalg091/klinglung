@@ -39,7 +39,7 @@
 </nav>
 <div class="container">
     <!--Row with three equal columns-->
-    <div class="row">
+    <div class="row" id="ah">
     </div>
 </div>
 <script>
@@ -51,9 +51,11 @@
         $conn = mysqli_connect($dbaddress, $username, $passwd, $db);
         $sql = "SELECT * FROM info";
         $result = mysqli_query($conn, $sql);
-        $rows = [];
+        $nameArray = array();
+        $descArray = array();
         while($row = mysqli_fetch_array($result)){
-            $rows = array($row);
+            array_push($nameArray, $row["name"]);
+            array_push($descArray, $row["desc"]);
         }
         /*if (mysqli_num_rows($result) > 0) {
             // output data of each row
@@ -65,10 +67,9 @@
         }*/
         mysqli_close($conn);
     ?>
-    var id = <?php echo json_encode($rows[0]);?>;
-    var title = <?php echo json_encode($rows[1]);?>;
-    var desc = <?php echo json_encode($rows[2]);?>;
-    for(var i = 0; i < id.length; i++){
+    var title = <?php echo json_encode($nameArray);?>;
+    var desc = <?php echo json_encode($descArray);?>;
+    for(var i = 0; i < title.length; i++){
         var wrap = document.createElement("div");
         wrap.className = "col";
         var card = document.createElement("div");
@@ -88,6 +89,7 @@
         bd.appendChild(ctext);
         var button = document.createElement("a");
         button.className = "btn btn-primary";
+        button.href = "wordlist.php?id=" + i;
         button.innerText = "Practice";
         bd.appendChild(button);
         document.getElementById("ah").appendChild(wrap);
