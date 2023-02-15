@@ -40,22 +40,35 @@
     <h4 class="card-header p-4"><div class="mx-3">
         <?php
                 session_start();
-                $db = new SQLite3('words.sqlite', SQLITE3_OPEN_CREATE | SQLITE3_OPEN_READWRITE);
-                $n = $db->querysingle('SELECT MAX(id) FROM words');
+                $dbaddress = "localhost:3307";
+                $username = "root";
+                $passwd = '';
+                $db = 'wordlist';
+                $conn = mysqli_connect($dbaddress, $username, $passwd, $db);
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                $id = 0;
+                if(is_numeric($_GET["table"])){
+                    $id = $_GET["table"];
+                } else{
+                    $id = 0;
+                }
+                $sql = "SELECT MAX(id) FROM `". $id . "`";
+                $result = mysqli_query($conn, $sql);
+                $n = mysqli_fetch_assoc($result);
+                $n = $n["MAX(id)"];
                 $n++;
-                if(empty($_SESSION["correct"]) || empty($_SESSION["seen"])){
-                    $_SESSION["correct"] = "a";
-                    $_SESSION["seen"] = "a";
-                    $f = $n - 1;
-                    for($i = 0; $i < $f; $i++){
+                if(empty($_SESSION["correct"]) || empty($_SESSION["seen"]) || strlen($_SESSION["correct"]) <> $n || strlen($_SESSION["seen"]) <> $n){
+                    for($i = 0; $i < $n - 1; $i++){
                         $_SESSION["correct"] = $_SESSION["correct"] . "a";
                         $_SESSION["seen"] = $_SESSION["seen"] . "a";
                     }
                 }
-                $c = random_int(0, $n);
+                $c = random_int(0, $n-1);
                 $first = true;
                 while($_SESSION["seen"][$c] == "b"){
-                    if($c < $n){
+                    if($c < $n - 1){
                         $c++;
                     } else{
                         $c = 0;
@@ -66,15 +79,18 @@
                                     $comp = false;
                                     $_SESSION["seen"][$i] = "a";
                                 }
-                                if($comp){
-                                    header('Location: done.php');
-                                }
+                            }
+                            if($comp){
+                                header('Location: done.php');
                             }
                         }
                         $first = false;
                     }
                 }
-                echo $db->querySingle('SELECT hu FROM words WHERE id = ' . $c);
+                $sql = "SELECT nat FROM `". $id . "` WHERE id = " . $c;
+                $result = mysqli_query($conn, $sql);
+                $nat = mysqli_fetch_assoc($result);
+                echo $nat["nat"];
             ?>
     </div></h4>
     <div class="card-body">
