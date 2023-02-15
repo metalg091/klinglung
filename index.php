@@ -44,11 +44,7 @@
 </div>
 <script>
     <?php
-        $dbaddress = "localhost:3307";
-        $username = "root";
-        $passwd = '';
-        $db = 'wordlist';
-        $conn = mysqli_connect($dbaddress, $username, $passwd, $db);
+        include "dbconn.php";
         $sql = "SELECT * FROM info";
         $result = mysqli_query($conn, $sql);
         $nameArray = array();

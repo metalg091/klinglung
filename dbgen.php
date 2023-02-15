@@ -5,15 +5,8 @@
         $launch = explode($delimiters[0], $ready);
         return  $launch;
     }
-    $dbaddress = "localhost:3307";
-    $username = "root";
-    $passwd = '';
-    $db = 'wordlist';
-    $conn = mysqli_connect($dbaddress, $username, $passwd, $db);
+    include "dbconn.php";
     $inp = array_values(array_filter(multiexplode(array(PHP_EOL,";",":","="), $_POST["words"])));
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
     $sql = "CREATE TABLE IF NOT EXISTS ite (`id` INT NOT NULL DEFAULT '0' ) AS SELECT 0 AS id";
     if (mysqli_query($conn, $sql)) {
         echo "Ite table created successfully<br>";

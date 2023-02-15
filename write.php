@@ -40,14 +40,7 @@
     <h4 class="card-header p-4"><div class="mx-3">
         <?php
                 session_start();
-                $dbaddress = "localhost:3307";
-                $username = "root";
-                $passwd = '';
-                $db = 'wordlist';
-                $conn = mysqli_connect($dbaddress, $username, $passwd, $db);
-                if (!$conn) {
-                    die("Connection failed: " . mysqli_connect_error());
-                }
+                include "dbconn.php";
                 $id = 0;
                 if(is_numeric($_GET["table"])){
                     $id = $_GET["table"];
