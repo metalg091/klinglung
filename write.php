@@ -84,13 +84,15 @@
                 $result = mysqli_query($conn, $sql);
                 $nat = mysqli_fetch_assoc($result);
                 echo $nat["nat"];
+                mysqli_close($conn);
             ?>
     </div></h4>
     <div class="card-body">
         <form action="check.php" methode="get">
             <input id="id" type="text" name="id" value="<?php echo $c;?>" style="display: none;">
+            <input name="table" value="<?php echo $id;?>" style="display: none;">
             <div class="container my-3"><div class="row">
-                <div class="col"><input type="text" autocomplete="off" id="en" name="en" class="form-control"></div>
+                <div class="col"><input type="text" autocomplete="off" id="en" name="ans" class="form-control"></div>
                 <div class="col-1"><input type="submit" class="form-control btn btn-outline-primary" value="check"></div>
             </div></div>
         </form>
