@@ -7,7 +7,7 @@
     <title>Klinglung</title>
     <?php
         session_start();
-        include "dbconn.php"
+        include "dbconn.php";
         $table = 0;
         if(is_numeric($_GET["table"])){
             $table = $_GET["table"];
@@ -20,8 +20,8 @@
         } else{
             $id = 0;
         }
-        $sql = "SELECT fore, nat FROM " . $table . " WHERE id=" . $id;
-        $result = mysqli_query($conn; $sql);
+        $sql = "SELECT fore, nat FROM `" . $table . "` WHERE id=" . $id;
+        $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $fore = $row["fore"];
         $nat = $row["nat"];
@@ -70,11 +70,11 @@
     </div>
 </nav>
 <div class="container">
-    <div class="card border border-2 border-success">
+    <div class="card border border-2 border-<?php if($sol){ echo "success";} else { echo "danger";} ?>">
         <div class="card-header">
             <div class="row mx-2 my-1">
-                <h5 class="card-title col mt-2 text-<?php if($sol){ echo "success";} else { echo "danger";} ?>"><?php if($sol){ echo "Correct!";} else { echo "Wrong!"} ?></h5>
-                <a class="btn btn-primary col-2 col-sm-2 col-md-2 col-lg-1 col-1" href="write.php">Next</a>
+                <h5 class="card-title col mt-2 text-<?php if($sol){ echo "success";} else { echo "danger";} ?>"><?php if($sol){ echo "Correct!";} else { echo "Wrong!";} ?></h5>
+                <a class="btn btn-primary col-2 col-sm-2 col-md-2 col-lg-1 col-1" href="write.php?table=<?php echo $table;?>">Next</a>
             </div>
         </div>
         <div class="card-body">

@@ -92,7 +92,7 @@
             <input id="id" type="text" name="id" value="<?php echo $c;?>" style="display: none;">
             <input name="table" value="<?php echo $id;?>" style="display: none;">
             <div class="container my-3"><div class="row">
-                <div class="col"><input type="text" autocomplete="off" id="en" name="ans" class="form-control"></div>
+                <div class="col"><input type="text" autocomplete="off" id="ans" name="ans" class="form-control"></div>
                 <div class="col-1"><input type="submit" class="form-control btn btn-outline-primary" value="check"></div>
             </div></div>
         </form>
