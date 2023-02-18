@@ -39,53 +39,56 @@
 <div class="card m-5">
     <h4 class="card-header p-4"><div class="mx-3">
         <?php
-                session_start();
-                include "dbconn.php";
+            session_start();
+            include "dbconn.php";
+            $id = 0;
+            if(is_numeric($_GET["table"])){
+                $id = $_GET["table"];
+            } else{
                 $id = 0;
-                if(is_numeric($_GET["table"])){
-                    $id = $_GET["table"];
+            }
+            $sql = "SELECT MAX(id) FROM `". $id . "`";
+            $result = mysqli_query($conn, $sql);
+            $n = mysqli_fetch_assoc($result);
+            $n = $n["MAX(id)"];
+            $n++;
+            if(empty($_SESSION["correct"]) || empty($_SESSION["seen"]) || strlen($_SESSION["correct"]) <> $n || strlen($_SESSION["seen"]) <> $n){
+                $_SESSION["correct"] = "a";
+                $_SESSION["seen"] = "a";
+                for($i = 0; $i < $n - 1; $i++){
+                    $_SESSION["correct"] = $_SESSION["correct"] . "a";
+                    $_SESSION["seen"] = $_SESSION["seen"] . "a";
+                }
+            }
+            $c = random_int(0, $n-1);
+            $first = true;
+            while($_SESSION["seen"][$c] == "b"){
+                if($c < $n - 1){
+                    $c++;
                 } else{
-                    $id = 0;
-                }
-                $sql = "SELECT MAX(id) FROM `". $id . "`";
-                $result = mysqli_query($conn, $sql);
-                $n = mysqli_fetch_assoc($result);
-                $n = $n["MAX(id)"];
-                $n++;
-                if(empty($_SESSION["correct"]) || empty($_SESSION["seen"]) || strlen($_SESSION["correct"]) <> $n || strlen($_SESSION["seen"]) <> $n){
-                    for($i = 0; $i < $n - 1; $i++){
-                        $_SESSION["correct"] = $_SESSION["correct"] . "a";
-                        $_SESSION["seen"] = $_SESSION["seen"] . "a";
-                    }
-                }
-                $c = random_int(0, $n-1);
-                $first = true;
-                while($_SESSION["seen"][$c] == "b"){
-                    if($c < $n - 1){
-                        $c++;
-                    } else{
-                        $c = 0;
-                        if(!$first){
-                            $comp = true;
-                            for($i = 0; $i<strlen($_SESSION["correct"]); $i++){
-                                if($_SESSION["correct"][$i] == "a"){
-                                    $comp = false;
-                                    $_SESSION["seen"][$i] = "a";
-                                }
-                            }
-                            if($comp){
-                                header('Location: done.php');
+                    $c = 0;
+                    if(!$first){
+                        $comp = true;
+                        for($i = 0; $i<strlen($_SESSION["correct"]); $i++){
+                            if($_SESSION["correct"][$i] == "a"){
+                                $comp = false;
+                                $_SESSION["seen"][$i] = "a";
                             }
                         }
-                        $first = false;
+                        if($comp){
+                            header('Location: done.php');
+                            die();
+                        }
                     }
+                    $first = false;
                 }
-                $sql = "SELECT nat FROM `". $id . "` WHERE id = " . $c;
-                $result = mysqli_query($conn, $sql);
-                $nat = mysqli_fetch_assoc($result);
-                echo $nat["nat"];
-                mysqli_close($conn);
-            ?>
+            }
+            $sql = "SELECT nat FROM `". $id . "` WHERE id = " . $c;
+            $result = mysqli_query($conn, $sql);
+            $nat = mysqli_fetch_assoc($result);
+            echo $nat["nat"];
+            mysqli_close($conn);
+        ?>
     </div></h4>
     <div class="card-body">
         <form action="check.php" methode="get">
