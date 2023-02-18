@@ -76,7 +76,7 @@
                             }
                         }
                         if($comp){
-                            header('Location: done.php');
+                            header('Location: write.php');
                             die();
                         }
                     }
