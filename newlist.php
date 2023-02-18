@@ -40,7 +40,7 @@
     </div>
     <div class="mx-5">
         <label for="formText" class="form-label">Insert word list</label>
-        <textarea name="words" class="form-control" id="exampleFormControlTextarea1" rows="20"></textarea>
+        <textarea name="words" class="form-control" id="exampleFormControlTextarea1" rows="20" placeholder="Foreign word&#10Native word&#10Foreign word&#10Native word&#10Forei..."></textarea>
         <input type="submit" class="form-control btn btn-outline-primary" value="Submit">
     </div>
 </form>
