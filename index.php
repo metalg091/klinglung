@@ -69,7 +69,7 @@
         var wrap = document.createElement("div");
         wrap.className = "col";
         var card = document.createElement("div");
-        card.className = "card";
+        card.className = "card my-3";
         card.style = "width: 20rem;";
         wrap.appendChild(card);
         var bd = document.createElement("div");
