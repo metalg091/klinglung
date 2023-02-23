@@ -74,7 +74,7 @@
         <div class="card-header">
             <div class="row mx-2 my-1">
                 <h5 class="card-title col mt-2 text-<?php if($sol){ echo "success";} else { echo "danger";} ?>"><?php if($sol){ echo "Correct!";} else { echo "Wrong!";} ?></h5>
-                <a class="btn btn-primary col-2 col-sm-2 col-md-2 col-lg-1 col-1" href="write.php?table=<?php echo $table;?>">Next</a>
+                <a class="btn btn-primary col-2 col-sm-2 col-md-2 col-lg-1 col-1" href="write.php?table=<?php echo $table;?>" autofocus>Next</a>
             </div>
         </div>
         <div class="card-body">
@@ -85,7 +85,7 @@
                 <li class="list-group-item border-0 ms-5 mb-3"><?php echo $ans;?></li>
                 <li class="list-group-item">Correct</li>
                 <li class="list-group-item border-0 ms-5 mb-3"><?php echo $fore;?></li>
-            
+            </ul>
         </div>
     </div>
 </div>
