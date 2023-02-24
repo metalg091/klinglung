@@ -7,22 +7,6 @@
     }
     include "dbconn.php";
     $inp = array_values(array_filter(multiexplode(array(PHP_EOL,";",":","="), $_POST["words"])));
-    $sql = "CREATE TABLE IF NOT EXISTS ite (`id` INT NOT NULL DEFAULT '0' ) AS SELECT 0 AS id";
-    if (mysqli_query($conn, $sql)) {
-        echo "Ite table created successfully<br>";
-    } else {
-        echo "<br>Error creating ite: " . mysqli_error($conn);
-    }
-    $sql = "CREATE TABLE IF NOT EXISTS info (
-        `id` INT NOT NULL, 
-        `name` TINYTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, 
-        `desc` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, 
-        PRIMARY KEY (`id`))";
-    if (mysqli_query($conn, $sql)) {
-        echo "info table created successfully<br>";
-    } else {
-        echo "<br>Error creating info: " . mysqli_error($conn);
-    }
     $sql = "SELECT id FROM `ite`";
     $result = mysqli_query($conn, $sql);
     $row   = mysqli_fetch_row($result); //row[0] (single variable)
