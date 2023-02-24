@@ -2,7 +2,8 @@
 <head>
     <?php
         session_start();
-        session_unset();
+        $_SESSION["seen"] = "";
+        $_SESSION["correct"] = "";
         include "dbconn.php";
         $id = 0;
         if(is_numeric($_GET["id"])){
