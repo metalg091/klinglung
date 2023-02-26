@@ -44,6 +44,9 @@
 </div>
 <script>
     <?php
+        if(isset($_GET["e"])){
+            echo "alert('You must be loggen in to do that!!!');";
+        }
         include "dbconn.php";
         $sql = "SELECT * FROM info";
         $result = mysqli_query($conn, $sql);
