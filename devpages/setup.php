@@ -39,6 +39,7 @@
         `id` INT NOT NULL, 
         `name` TINYTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, 
         `desc` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, 
+        `creator` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci, 
         PRIMARY KEY (`id`))";
     if (mysqli_query($conn, $sql)) {
         echo "info table created successfully<br>";
