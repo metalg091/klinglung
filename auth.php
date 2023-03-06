@@ -24,9 +24,9 @@
         $n++;
         $sql = "INSERT INTO `profiles` (`id`, `username`, `email`, `passwd`) VALUES ('" . $n . "', '" . $userin . "', '" . $mail . "', '" . password_hash($pass, PASSWORD_DEFAULT) . "')";
         if (mysqli_query($conn, $sql)) {
-            echo "Inserted data successfully<br>";
+            header("Location: index.php");
         } else {
-            echo "<br>Error: ". $sql . "<br>" . mysqli_error($conn);
+            header("Location: login.php");
         }
         $_SESSION["name"] = $userin;
         setcookie("login", true, 0);
@@ -34,6 +34,7 @@
         $sql = "SELECT username, passwd FROM `profiles` WHERE `email` = '" . $mail ."'";
         $result = mysqli_query($conn, $sql);
         if(!$result){
+            header("Location: login.php");
             die("error"); 
         }
         $row = mysqli_fetch_assoc($result);
@@ -44,7 +45,7 @@
             setcookie("login", true, 0);
             header("Location: index.php");
         }else{
-            echo "wrong password";
+            header("Location: login.php");
         }
     }
     mysqli_close($conn);
