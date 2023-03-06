@@ -7,6 +7,7 @@
     <title>Klinglung - writing</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="script/login.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-dark navbar-expand-lg text-bg-primary mb-5"> <!-- Supposed to use some "data-bs-theme="dark"" stuff, doesn't work -->
@@ -22,7 +23,7 @@
                 </li>
             </ul>
             <div class="d-flex">
-                <button type="button" class="btn btn-info" id ="navbtn" onclick="location.href='login.php'">Login</button>
+                <button type="button" class="btn btn-info" id ="navbtn" onclick="change();">Login</button>
             </div>
         </div>
     </div>
@@ -94,6 +95,5 @@
 </div>
 <!-- Bootstrap JS Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="script/login.js"></script>
 </body>
 </html>
