@@ -4,16 +4,18 @@
         die("Email, password not given");
     }
     $pass = $_POST["passwd"];
-    $dbaddress = "localhost:3306";
-    $username = "test";
-    $passwd = '1234';
+    $dbaddress = "localhost:3307";
+    $username = "root";
+    $passwd = '';
     $db = 'account';
     $conn = mysqli_connect($dbaddress, $username, $passwd, $db);
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
     $mail = mysqli_real_escape_string($conn, $_POST["email"]);
-    $userin = mysqli_real_escape_string($conn, $_POST["username"]);
+    if(isset($_POST["username"])){
+        $userin = mysqli_real_escape_string($conn, $_POST["username"]);
+    }
     if(isset($_POST["reg"])){
         $sql = "SELECT MAX(id) FROM `profiles`";
         $result = mysqli_query($conn, $sql);
@@ -27,7 +29,7 @@
             echo "<br>Error: ". $sql . "<br>" . mysqli_error($conn);
         }
         $_SESSION["name"] = $userin;
-        $_COOKIE["login"] = true;
+        setcookie("login", true, 0);
     } else{
         $sql = "SELECT username, passwd FROM `profiles` WHERE `email` = '" . $mail ."'";
         $result = mysqli_query($conn, $sql);
@@ -36,10 +38,10 @@
         }
         $row = mysqli_fetch_assoc($result);
         $hash = $row["passwd"];
-        $username = $row["username"];
+        $uname = $row["username"];
         if(password_verify($pass, $hash)){
-            $_SESSION["name"] = $username;
-            $_COOKIE["login"] = true;
+            $_SESSION["name"] = $uname;
+            setcookie("login", true, 0);
             header("Location: index.php");
         }else{
             echo "wrong password";
