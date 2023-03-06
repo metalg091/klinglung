@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if(!isset($_SESSION["name"])){
+        header("Location: index.php?e=1");
+    }
     function multiexplode ($delimiters,$string) {
 
         $ready = str_replace($delimiters, $delimiters[0], $string);
@@ -17,17 +21,18 @@
         PRIMARY KEY (`id`)
         )";
         if (mysqli_query($conn, $sql)) {
-            echo "Table " . $row[0] . " created successfully<br>";
+            //echo "Table " . $row[0] . " created successfully<br>";
         } else {
-            echo "<br>Error creating table: " . mysqli_error($conn);
+            //echo "<br>Error creating table: " . mysqli_error($conn);
         }
     $title = mysqli_real_escape_string($conn, $_POST["title"]);
     $desc = mysqli_real_escape_string($conn, $_POST["desc"]);
-    $sql = "INSERT INTO `info` (`id`, `name`, `desc`) VALUES ('" . $row[0] . "', '" . $title ."', '" . $desc . "')";
+    $creatr = mysqli_real_escape_string($conn, $_SESSION["name"]);
+    $sql = "INSERT INTO `info` (`id`, `name`, `desc`, `creator`) VALUES ('" . $row[0] . "', '" . $title ."', '" . $desc . "', '" . $creatr . "')";
     if (mysqli_query($conn, $sql)) {
-        echo "Inserted data successfully<br>";
+        //echo "Inserted data successfully<br>";
     } else {
-        echo "<br>Error: ". $sql . "<br>" . mysqli_error($conn);
+        //echo "<br>Error: ". $sql . "<br>" . mysqli_error($conn);
     }
     $id = 0;
     for($i = 0; $i < count($inp)-1; $i+=2){
@@ -36,18 +41,19 @@
         $sql = "INSERT INTO `" . $row[0] . "` (`id`, `fore`, `nat`) VALUES ('" . $id . "', '" . $inp[$i] . "', '" . $inp[$i+1] . "');";
         //Don't worry phpMyAdmin does NOT disply it as utf8 and thus the input seems corrupted, but it is NOT!!!
         if (mysqli_query($conn, $sql)) {
-            echo "Inserted data successfully<br>";
+            //echo "Inserted data successfully<br>";
         } else {
-            echo "<br>Error: ". $sql . "<br>" . mysqli_error($conn);
+            //echo "<br>Error: ". $sql . "<br>" . mysqli_error($conn);
         }
         $id++;
     }
     $sql = "UPDATE `ite` SET id='" . $row[0] + 1 . "' WHERE id=" . $row[0];
     if (mysqli_query($conn, $sql)) {
-        echo "Record updated successfully<br>";
+        //echo "Record updated successfully<br>";
     } else {
-        echo "<br>Error updating record: " . mysqli_error($conn);
+        //echo "<br>Error updating record: " . mysqli_error($conn);
     }
+    header("Location: index.php");
     //echo '<pre>'; print_r($inp); echo '</pre>';
     mysqli_close($conn);
 ?>
