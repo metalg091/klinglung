@@ -68,7 +68,7 @@
                 <a class="btn btn-primary col-2 col-sm-2 col-md-2 col-lg-1 col-1" href="write.php?table=<?php echo $table;?>" autofocus>Next</a>
             </div>
         </div>
-        <div class="card-body">
+        <div class="shadow-lg card-body">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Definition</li>
                 <li class="list-group-item border-0 ms-5 mb-3"><?php echo $nat;?></li>

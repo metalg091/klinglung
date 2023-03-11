@@ -66,6 +66,8 @@
         <h5 class="col-10 col-lg-11"><?php echo $desc;?></h5>
         <button class="col-2 col-lg-1 btn btn-outline-primary" onclick="location.href='write.php?table=<?php echo $id;?>'">Write</button>
     </div>
+    <div id="words">
+    </div>
 </div>
 <!-- Bootstrap JS Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -74,16 +76,16 @@
     var native = <?php echo json_encode($nat); ?>;
     for(var i = 0; i < foreign.length; i++){
         var wrap = document.createElement("ul");
-        wrap.className = "list-group list-group-horizontal";
-        var fore = document.createElement("li");
-        fore.className = "col list-group-item border-end-0 mb-1";
-        fore.innerText = foreign[i]; 
-        wrap.appendChild(fore);
-        var nat = document.createElement("li");
-        nat.className = "col list-group-item border-start-0 mb-1";
-        nat.innerText = native[i];
-        wrap.appendChild(nat);
-        document.getElementById("ah").appendChild(wrap);
+            wrap.className = "shadow-sm list-group list-group-horizontal mb-2";
+                var fore = document.createElement("li");
+                    fore.className = "col list-group-item border-end-0";
+                    fore.innerText = foreign[i]; 
+                wrap.appendChild(fore);
+                var nat = document.createElement("li");
+                    nat.className = "col list-group-item border-start-0";
+                    nat.innerText = native[i];
+                wrap.appendChild(nat);
+        document.getElementById("words").appendChild(wrap);
     }
 </script>
 <script src="script/login.js"></script>

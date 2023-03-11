@@ -32,13 +32,13 @@
 </nav>
 <form action="dbgen.php" method="post">
     <div class="m-5 w-25">
-        <input name="title" class="form-control mb-3" type="text" placeholder="Name of wordlist" aria-label="default input example">
-        <textarea name="desc" class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="Description of wordlist"></textarea>
+        <input name="title" class="shadow form-control mb-3" type="text" placeholder="Name of wordlist" aria-label="default input example">
+        <textarea name="desc" class="shadow-sm form-control" id="exampleFormControlTextarea2" rows="3" placeholder="Description of wordlist"></textarea>
     </div>
     <div class="mx-5">
         <label for="formText" class="form-label">Insert word list</label>
-        <textarea name="words" class="form-control" id="exampleFormControlTextarea1" rows="20" placeholder="Foreign word&#10Native word&#10Foreign word&#10Native word&#10Forei..."></textarea>
-        <input type="submit" class="form-control btn btn-outline-primary" value="Submit">
+        <textarea name="words" class="shadow-lg form-control" id="exampleFormControlTextarea1" rows="18" placeholder="Foreign word&#10Native word&#10Foreign word&#10Native word&#10Forei..."></textarea>
+        <input type="submit" class="mt-3 form-control btn btn-outline-primary" value="Submit">
     </div>
 </form>
 <!-- Bootstrap JS Bundle with Popper -->

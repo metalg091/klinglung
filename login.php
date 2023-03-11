@@ -30,7 +30,7 @@
         </div>
     </div>
 </nav>
-<div id="login" class="container w-25 border p-5">
+<div id="login" class="shadow-lg container w-25 border rounded-4 p-5">
     <button class="btn btn-primary" disabled>Login</button>
     <button class="btn btn-outline-primary" onclick="change_form(0)">Register</button>
     <form method="post" action="auth.php" >
@@ -46,7 +46,7 @@
         <button type="submit" class="btn btn-primary mt-3">Login</button>
     </form>
 </div>
-<div id="register" class="container w-25 border p-5" style="display: none;">
+<div id="register" class="shadow-lg container w-25 border rounded-4 p-5" style="display: none;">
     <button class="btn btn-outline-primary" onclick="change_form(1)">Login</button>
     <button class="btn btn-primary" disabled>Register</button>
     <form method="post" action="auth.php" >

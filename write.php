@@ -27,7 +27,7 @@
         </div>
     </div>
 </nav>
-<div class="card m-5">
+<div class="shadow-lg card m-5">
     <h4 class="card-header p-4"><div class="mx-3">
         <?php
             session_start();

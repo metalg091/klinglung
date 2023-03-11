@@ -30,7 +30,7 @@
 </nav>
 <div class="container">
     <!--Row with three equal columns-->
-    <div class="row" id="ah">
+    <div class="row" id="list">
     </div>
 </div>
 <script>
@@ -47,42 +47,34 @@
             array_push($nameArray, $row["name"]);
             array_push($descArray, $row["desc"]);
         }
-        /*if (mysqli_num_rows($result) > 0) {
-            // output data of each row
-            while($row = mysqli_fetch_assoc($result)) {
-                ;
-            }
-        } else {
-            echo "0 results";
-        }*/
         mysqli_close($conn);
     ?>
     var title = <?php echo json_encode($nameArray);?>;
     var desc = <?php echo json_encode($descArray);?>;
     for(var i = 0; i < title.length; i++){
         var wrap = document.createElement("div");
-        wrap.className = "col";
-        var card = document.createElement("div");
-        card.className = "card my-3";
-        card.style = "width: 20rem;";
-        wrap.appendChild(card);
-        var bd = document.createElement("div");
-        bd.className = "card-body";
-        card.appendChild(bd);
-        var ctitle = document.createElement("h5");
-        ctitle.className = "card-title";
-        ctitle.innerText = title[i];
-        bd.appendChild(ctitle);
-        var ctext = document.createElement("p");
-        ctext.className = "card-text";
-        ctext.innerText = desc[i];
-        bd.appendChild(ctext);
-        var button = document.createElement("a");
-        button.className = "btn btn-primary";
-        button.href = "wordlist.php?id=" + i;
-        button.innerText = "Practice";
-        bd.appendChild(button);
-        document.getElementById("ah").appendChild(wrap);
+            wrap.className = "col";
+            var card = document.createElement("div");
+                card.className = "shadow card my-3";
+                card.style = "width: 20rem;";
+                wrap.appendChild(card);
+            var bd = document.createElement("div");
+                bd.className = "card-body";
+                card.appendChild(bd);
+            var ctitle = document.createElement("h5");
+                ctitle.className = "card-title";
+                ctitle.innerText = title[i];
+                bd.appendChild(ctitle);
+            var ctext = document.createElement("p");
+                ctext.className = "card-text";
+                ctext.innerText = desc[i];
+                bd.appendChild(ctext);
+            var button = document.createElement("a");
+                button.className = "btn btn-primary";
+                button.href = "wordlist.php?id=" + i;
+                button.innerText = "Practice";
+                bd.appendChild(button);
+        document.getElementById("list").appendChild(wrap);
     }
 </script>
 <!-- Bootstrap JS Bundle with Popper -->
