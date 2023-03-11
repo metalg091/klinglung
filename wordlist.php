@@ -49,7 +49,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                    <a class="nav-link" href="index.php">Home</a>
                 </li>
             </ul>
             <div class="d-flex">
