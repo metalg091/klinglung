@@ -26,6 +26,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
+                <li class="nav-item" style="display: none;" id="mset">
+                    <a class="nav-link" href="mysets.php">My sets</a>
+                </li>
             </ul>
         </div>
     </div>

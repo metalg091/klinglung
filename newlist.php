@@ -3,7 +3,8 @@
     <?php
         session_start();
         if(!isset($_SESSION["name"])){
-            header("Location: index.php?e=1");
+            setcookie("login", true, time()-1);
+            header("Location: login.php");
         }
     ?>
     <meta charset="utf-8">
@@ -25,6 +26,9 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mysets.php">My sets</a>
                 </li>
             </ul>
         </div>

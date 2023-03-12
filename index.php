@@ -21,6 +21,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
+                <li class="nav-item" style="display: none;" id="mset">
+                    <a class="nav-link" href="mysets.php">My sets</a>
+                </li>
             </ul>
             <div class="d-flex">
                 <button type="button" class="btn btn-info" id ="navbtn" onclick="change();">Login</button>
@@ -35,9 +38,6 @@
 </div>
 <script>
     <?php
-        if(isset($_GET["e"])){
-            echo "alert('You must be loggen in to do that!!!');";
-        }
         include "dbconn.php";
         $sql = "SELECT * FROM info";
         $result = mysqli_query($conn, $sql);

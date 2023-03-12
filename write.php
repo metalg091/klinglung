@@ -20,6 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
+                <li class="nav-item" style="display: none;" id="mset">
+                    <a class="nav-link" href="mysets.php">My sets</a>
+                </li>
             </ul>
             <div class="d-flex">
                 <button type="button" class="btn btn-info" id ="navbtn" onclick="change();">Login</button>

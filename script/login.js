@@ -7,4 +7,5 @@ function change(){
 }
 if(document.cookie.indexOf('login=1') != -1){
     document.getElementById("navbtn").innerText = "Create New";
+    document.getElementById("mset").style.display = "block";
 }
